@@ -9,11 +9,12 @@ This project is a webapp which displays weather details of different cities arou
 2. [Express.js(for web server)](https://expressjs.com/)
 
 ## How to run 
-1. Clone the project folder into your system using the command:
+1. Open a terminal and clone the project folder into your system using the command:
 
     `git clone https://github.com/ankitoscar/weather.git`
 
-2. Move into the project directory and open a terminal.
+2. Move into the project directory using:
+    `cd weather`
 
 3. Install all node dependencies(only [express](https://expressjs.com/)) using the command :
 
