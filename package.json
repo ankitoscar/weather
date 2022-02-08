@@ -1,0 +1,22 @@
+{
+  "name": "weather",
+  "version": "1.0.0",
+  "description": "Weather app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankitoscar/weather.git"
+  },
+  "author": "Ankit Oscar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ankitoscar/weather/issues"
+  },
+  "homepage": "https://github.com/ankitoscar/weather#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
