@@ -5,14 +5,17 @@ var desc = document.querySelector(".desc");
 var temp = document.querySelector(".temp");
 var current = document.querySelector(".current");
 var date = document.querySelector(".date");
+var humid = document.querySelector(".humidity");
 
+// Getting current date from the browser
 n = new Date();
 y = n.getFullYear();
 m = n.getMonth() + 1;
 d = n.getDate();
 
-date.innerHTML = d + "/" + m + "/" + y;
+date.innerHTML = d + "/" + m + "/" + y; // Writing date to the webpage
 
+// Function to get the current location from the browser
 function getLocation(){
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
@@ -22,6 +25,7 @@ function getLocation(){
     }
 }
 
+// Function to update weather of current location after getting it from browser
 function geoSuccess(position){
     var lat = position.coords.latitude;
     var lon = position.coords.longitude;
@@ -34,6 +38,7 @@ function geoSuccess(position){
         var descvalue = data["current"]["weather"][0]["description"];
         temp.innerHTML = "Temprature: " + tempvalue + " °C";
         desc.innerHTML = "Cloud: " + descvalue;
+        humid.innerHTML = "Humidity: " + data["current"]["humidity"] + " %";
         
 
         for(i=1; i<=7; i++){
@@ -45,18 +50,20 @@ function geoSuccess(position){
             document.querySelector(".date"+i).innerHTML = d + "/" + m + "/" + y;
             document.querySelector(".temp"+i).innerHTML = "Temperature: " + data["daily"][i]["temp"]["max"] + "/" + data["daily"][i]["temp"]["min"] + " °C";
             document.querySelector(".desc"+i).innerHTML = "Cloud: " + data["daily"][i]["weather"][0]["description"];
+            document.querySelector(".humidity"+i).innerHTML = "Humidity: " + data["daily"][i]["humidity"] + " %";
         }
 
     })
 }
 
+// Handling geolocation error
 function geoError() {
     alert("Geocoder failed")
 }
 
 getLocation()
 
-
+// Button function to get weather details of 
 button.addEventListener("click", function () {
     fetch("http://api.openweathermap.org/geo/1.0/direct?q="+ inputvalue.value + "&appid=f2941699ea6befb5da77e2ae07ac0af6")
     .then((response) => response.json())
@@ -72,6 +79,7 @@ button.addEventListener("click", function () {
         var descvalue = data["current"]["weather"][0]["description"];
         temp.innerHTML = "Temprature: " + tempvalue + " °C";
         desc.innerHTML = "Cloud: " + descvalue;
+        humid.innerHTML = "Humidity: " + data["current"]["humidity"] + " %";
 
 
         for(i=1; i<=7; i++){
@@ -83,6 +91,7 @@ button.addEventListener("click", function () {
             document.querySelector(".date"+i).innerHTML = d + "/" + m + "/" + y;
             document.querySelector(".temp"+i).innerHTML = "Temperature: " + data["daily"][i]["temp"]["max"] + "/" + data["daily"][i]["temp"]["min"] + " °C";
             document.querySelector(".desc"+i).innerHTML = "Cloud: " + data["daily"][i]["weather"][0]["description"];
+            document.querySelector(".humidity"+i).innerHTML = "Humidity: " + data["daily"][i]["humidity"] + " %";
         }
         })
         .catch((err) => {
